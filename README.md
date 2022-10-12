@@ -2,7 +2,7 @@
 
 # GET
 
-## "/People" -> Get All
+### "/People" -> Get All
 
 ## "/People/filter-by-firstname/:firstname" -> Get by firstname
 
