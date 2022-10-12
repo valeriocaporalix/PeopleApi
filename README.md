@@ -1,23 +1,23 @@
 # PeopleApi
 
-# GET
+## GET
 
 ### "/People" -> Get All
 
-## "/People/filter-by-firstname/:firstname" -> Get by firstname
+### "/People/filter-by-firstname/:firstname" -> Get by firstname
 
-## "/People/filter-by-lastname/:lastname" -> Get by lastname
+### "/People/filter-by-lastname/:lastname" -> Get by lastname
 
-## "/People/filter-by-firstname/:age" -> Get by age
+### "/People/filter-by-firstname/:age" -> Get by age
 
-# POST
+## POST
 
-## "/People/populate" -> Populate with People examples
+### "/People/populate" -> Populate with People examples
 
-## "/People" (with Body) -> Add new People
+### "/People" (with Body) -> Add new People
 
-# DELETE
+## DELETE
 
-## "/People/:fiscalCode" -> Delete a People from the list
+### "/People/:fiscalCode" -> Delete a People from the list
 
 
