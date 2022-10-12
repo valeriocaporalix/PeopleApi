@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace PersonApi.Controllers
 {
@@ -59,14 +60,14 @@ namespace PersonApi.Controllers
         }
 
         [HttpPost()]
-        public string Post([FromBody] People value)
+        public HttpResponseMessage Post([FromBody] People value)
         {
             ListOfPeople.Add(value);
-            return "Person added correctly!";
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         [HttpPost("populate")]
-        public string PostExamples()
+        public HttpResponseMessage PostExamples()
         {
             ListOfPeople.Add(PeopleFactory.ValerioCaporali);
             ListOfPeople.Add(PeopleFactory.MauroCotoletta);
@@ -75,11 +76,11 @@ namespace PersonApi.Controllers
             ListOfPeople.Add(PeopleFactory.ValerioSettimius);
             ListOfPeople.Add(PeopleFactory.DiegoSettimius);
             ListOfPeople.Add(PeopleFactory.GiorgioCaporali);
-            return "Example persons added correctly!";
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         [HttpDelete("{fiscalCode}")]
-        public string Delete(string fiscalCode)
+        public HttpResponseMessage Delete(string fiscalCode)
         {
             People peopleToRemove = new People();
             foreach (var person in ListOfPeople)
@@ -89,8 +90,15 @@ namespace PersonApi.Controllers
                     peopleToRemove = person;
                 }
             }
-            ListOfPeople.Remove(peopleToRemove);
-            return "Person removed!";
+            if (peopleToRemove.FiscalCode != fiscalCode)
+            {
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+            } else
+            {
+                ListOfPeople.Remove(peopleToRemove);
+                return new HttpResponseMessage(HttpStatusCode.OK);
+            }
+            
             
         }
     }
