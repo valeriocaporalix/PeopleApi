@@ -17,8 +17,8 @@ namespace PersonApi.Controllers
             return ListOfPeople;
         }
 
-        [HttpGet("filter-via-firstname/{name}")]
-        public List<People> GetViaFirstName(string name)
+        [HttpGet("filter-by-firstname/{name}")]
+        public List<People> GetByFirstName(string name)
         {
             List<People> filteredList = new List<People>();
             foreach(var person in ListOfPeople)
@@ -31,8 +31,8 @@ namespace PersonApi.Controllers
             return filteredList;
         }
 
-        [HttpGet("filter-via-lastname/{name}")]
-        public List<People> GetViaLastName(string name)
+        [HttpGet("filter-by-lastname/{name}")]
+        public List<People> GetByLastName(string name)
         {
             List<People> filteredList = new List<People>();
             foreach (var person in ListOfPeople)
@@ -45,8 +45,8 @@ namespace PersonApi.Controllers
             return filteredList;
         }
 
-        [HttpGet("filter-via-age/{age}")]
-        public List<People> GetViaAge(int age)
+        [HttpGet("filter-by-age/{age}")]
+        public List<People> GetByAge(int age)
         {
             List<People> filteredList = new List<People>();
             foreach (var person in ListOfPeople)
@@ -63,7 +63,7 @@ namespace PersonApi.Controllers
         public HttpResponseMessage Post([FromBody] People value)
         {
             ListOfPeople.Add(value);
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            return new HttpResponseMessage(HttpStatusCode.Created);
         }
 
         [HttpPost("populate")]
@@ -76,7 +76,7 @@ namespace PersonApi.Controllers
             ListOfPeople.Add(PeopleFactory.ValerioSettimius);
             ListOfPeople.Add(PeopleFactory.DiegoSettimius);
             ListOfPeople.Add(PeopleFactory.GiorgioCaporali);
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            return new HttpResponseMessage(HttpStatusCode.Created);
         }
 
         [HttpDelete("{fiscalCode}")]
@@ -96,7 +96,7 @@ namespace PersonApi.Controllers
             } else
             {
                 ListOfPeople.Remove(peopleToRemove);
-                return new HttpResponseMessage(HttpStatusCode.OK);
+                return new HttpResponseMessage(HttpStatusCode.NoContent);
             }
             
             
